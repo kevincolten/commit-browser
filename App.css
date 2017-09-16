@@ -1,0 +1,7 @@
+table tr:nth-of-type(even) {
+  background-color: #F8F8F8;
+}
+
+table tr:hover {
+  background-color: lightgray;
+}
