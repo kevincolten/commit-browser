@@ -17,6 +17,6 @@
 2. `yarn start` or `npm start`
 
 ## Notes
-### Obviously a bad idea to expose your API token on the front end
+### Obviously a bad idea to expose your API token on the front end and in the repo.
 ### If accessing over http, try using Google Chrome. Firefox demands https when sending authentication headers.
-### Repositories are sorted by "Most recently updated", then by "Forks"
+### Repositories are sorted by "Most recently updated", then by "Forks".
