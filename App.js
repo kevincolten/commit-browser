@@ -65,8 +65,7 @@ class App extends React.Component {
     fetch(`https://api.github.com/users/${user}/repos?sort=updated`, { headers })
     .then(res => res.json())
     .then(repos => this.setState({ 
-      repos: repos.sort((a, b) => a.forks_count < b.forks_count ? 1 : -1),
-      searchRepo: `user:${user} `
+      repos: repos.sort((a, b) => a.forks_count < b.forks_count ? 1 : -1)
     }))
     .catch(e => {
       console.error(e);
@@ -141,7 +140,7 @@ class App extends React.Component {
           <td>
             <div className="nowrap">{commit.commit.message}</div>
             <small>
-              {commit.sha.slice(-7)} {commit.commit.author.name} {moment.utc(commit.commit.author.date).fromNow()}
+              {commit.sha.slice(-7)}&nbsp;&nbsp;{commit.commit.author.name}&nbsp;&nbsp;{moment.utc(commit.commit.author.date).fromNow()}
             </small>
           </td>
         </tr>
@@ -166,7 +165,7 @@ class App extends React.Component {
             </caption>
             <thead>
               <tr>
-                <th>User/Organization</th>
+                <th>Users / Organizations</th>
               </tr>
             </thead>
             <tbody onClick={this.clickUser}>{this.users()}</tbody>

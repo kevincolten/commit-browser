@@ -3,7 +3,7 @@ module.exports = {
   output: {
     filename: 'bundle.js'
   },
-  watch: true,
+  // watch: true,
   watchOptions: {
     aggregateTimeout: 300,
     poll: 1000,
