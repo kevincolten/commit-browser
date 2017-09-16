@@ -1,7 +1,59 @@
+main {
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
 table tr:nth-of-type(even) {
   background-color: #F8F8F8;
 }
 
-table tr:hover {
-  background-color: lightgray;
+table tbody tr:hover {
+  background-color: #c1c1c1;
+}
+
+table th, table td {
+  text-align: left;
+  padding: 0 2px;
+}
+
+table {
+  margin: 0 10px 40px;
+  min-width: 200px;
+}
+
+table td, table th {
+  max-width: 350px;
+}
+
+#tables {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+table td img {
+  max-height: 35px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+input {
+  width: 100%;
+  border: 1px solid #c1c1c1;
+  height: 20px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+.nowrap {
+  white-space: nowrap;
+  overflow-x: hidden;
 }

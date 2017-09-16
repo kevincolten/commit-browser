@@ -1,5 +1,6 @@
 import React from 'react';
 import debounce from 'lodash.debounce';
+import  moment from 'moment';
 import "./App.css";
 
 const headers = {
@@ -27,14 +28,21 @@ class App extends React.Component {
     fetch(`https://api.github.com/search/users?q=${this.userInput.value}`, { headers })
     .then(res => res.json())
     .then(json => this.setState({ users: json.items }))
-    .catch(e => console.error(e));
+    .catch(e => {
+      console.error(e);
+      this.setState({ users: [] });
+    });
   }
 
   searchRepos(e) {
     fetch(`https://api.github.com/search/repositories?q=user:${this.userInput.value}+${this.repoInput.value}`, { headers })
     .then(res => res.json())
     .then(json => this.setState({ repos: json.items }))
-    .catch(e => console.error(e));
+    .catch(e => {
+      console.error(e);
+      this.setState({ repos: [] });
+    });
+      
   }
 
   searchCommits(e) {
@@ -46,7 +54,10 @@ class App extends React.Component {
       })
       .then(res => res.json())
       .then(json => this.setState({ commits: json.items }))
-      .catch(e => console.error(e));
+      .catch(e => {
+        console.error(e);
+        this.setState({ commits: [] });
+      });
     } 
   }
 
@@ -57,14 +68,20 @@ class App extends React.Component {
       repos: repos.sort((a, b) => a.forks_count < b.forks_count ? 1 : -1),
       searchRepo: `user:${user} `
     }))
-    .catch(e => console.error(e));
+    .catch(e => {
+      console.error(e);
+      this.setState({ repos: [] });
+    });
   }
 
   fetchCommits(repo) {
     fetch(`https://api.github.com/repos/${this.userInput.value}/${repo}/commits`, { headers })
     .then(res => res.json())
     .then(commits => this.setState({ commits }))
-    .catch(e => console.error(e));
+    .catch(e => {
+      console.error(e);
+      this.setState({ commits: [] });
+    });
   }
 
   clickUser(e) {
@@ -88,9 +105,13 @@ class App extends React.Component {
     return this.state.users.map(user => {
       return (
         <tr key={user.id} data-user={user.login} style={{ cursor: 'pointer' }}>
-          <td>
-            <img src={user.avatar_url} style={{ maxHeight: '25px' }} />
-            <span>{user.login}</span>
+          <td style={{display: 'flex', alignContent: 'center'}}>
+            <img src={user.avatar_url} />
+            <div style={{ marginLeft: '2px' }}>
+              {user.login}
+              <br />
+              <small>{user.type}</small>
+            </div>
           </td>
         </tr>
       );
@@ -101,9 +122,13 @@ class App extends React.Component {
     return this.state.repos.map(repo => {
       return (
         <tr key={repo.id} data-repo={repo.name} style={{ cursor: 'pointer' }}>
-          <td>{repo.name}</td>
-          <td>{repo.stargazers_count}</td>
-          <td>{repo.forks_count}</td>
+          <td>
+            {repo.name}
+            <br />
+            <small>
+              forks: {repo.forks_count}&nbsp;&nbsp;stars: {repo.stargazers_count}
+            </small>
+          </td>
         </tr>
       );
     });
@@ -113,64 +138,72 @@ class App extends React.Component {
     return this.state.commits.map(commit => {
       return (
         <tr key={commit.sha} data-url={commit.html_url} style={{ cursor: 'pointer' }}>
-          <td>{commit.commit.message}</td>
-          <td>{commit.sha.slice(-7)}</td>
+          <td>
+            <div className="nowrap">{commit.commit.message}</div>
+            <small>
+              {commit.sha.slice(-7)} {commit.commit.author.name} {moment.utc(commit.commit.author.date).fromNow()}
+            </small>
+          </td>
         </tr>
       );
     });
   }
 
   render() {
+    const repoSearchVisibility = (this.userInput && this.userInput.value) ? 'visible' : 'hidden';
+    const commitSearchVisibility = (this.repoInput && this.repoInput.value) ? 'visible' : 'hidden';
     return (
-      <div style={{display: 'flex'}}>
-        <table>
-          <caption>
-            <input 
-              placeholder="Search for User/Org" 
-              onChange={debounce(this.searchUsers, 500)} 
-              ref={(input) => this.userInput = input} 
-            />
-          </caption>
-          <thead>
-            <tr>
-              <th>User/Organization</th>
-            </tr>
-          </thead>
-          <tbody onClick={this.clickUser}>{this.users()}</tbody>
-        </table>
-        <table>
-          <caption>
-            <input 
-              placeholder="Search for Repo" 
-              onChange={debounce(this.searchRepos, 500)} 
-              ref={(input) => this.repoInput = input}
-            />
-          </caption>
-          <thead>
-            <tr>
-              <th>Repositories</th>
-              <th>Stars</th>
-              <th>Forks</th>
-            </tr>
-          </thead>
-          <tbody onClick={this.clickRepo}>{this.repos()}</tbody>
-        </table>
-        <table>
-          <caption>
-            <input 
-              placeholder="Search for Commit" 
-              onChange={debounce(this.searchCommits, 500)} 
-              ref={(input) => this.commitInput = input} 
-            />
-          </caption>
-          <thead>
-            <tr>
-              <th>Commits</th>
-              <th>SHA1</th>
-            </tr>
-          </thead>
-          <tbody onClick={this.clickCommit}>{this.commits()}</tbody>
-        </table>
+      <div>
+        <h1 className="text-center">Commit Browser</h1>
+        <div id="tables">
+          <table>
+            <caption>
+              <input 
+                placeholder="Search Users/Orgs" 
+                onChange={debounce(this.searchUsers, 500)} 
+                ref={(input) => this.userInput = input} 
+              />
+            </caption>
+            <thead>
+              <tr>
+                <th>User/Organization</th>
+              </tr>
+            </thead>
+            <tbody onClick={this.clickUser}>{this.users()}</tbody>
+          </table>
+          <table>
+            <caption>
+              <input 
+                placeholder="Search Repos" 
+                onChange={debounce(this.searchRepos, 500)} 
+                ref={(input) => this.repoInput = input}
+                style={{ visibility: repoSearchVisibility }}
+              />
+            </caption>
+            <thead>
+              <tr>
+                <th>Repositories</th>
+              </tr>
+            </thead>
+            <tbody onClick={this.clickRepo}>{this.repos()}</tbody>
+          </table>
+          <table>
+            <caption>
+              <input 
+                placeholder="Search Commits" 
+                onChange={debounce(this.searchCommits, 500)} 
+                ref={(input) => this.commitInput = input}
+                style={{ visibility: commitSearchVisibility }}
+              />
+            </caption>
+            <thead>
+              <tr>
+                <th>Commits</th>
+              </tr>
+            </thead>
+            <tbody onClick={this.clickCommit}>{this.commits()}</tbody>
+          </table>
+        </div>
       </div>
     );
   }
