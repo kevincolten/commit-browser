@@ -38038,7 +38038,7 @@ var App = function (_React$Component) {
       var _this4 = this;
 
       if (this.commitInput.value) {
-        fetch('https://api.github.com/search/commits?q=user:' + this.userInput.value + '+repo:' + this.repoInput.value + '+' + this.commitInput.value, {
+        fetch('https://api.github.com/search/commits?q=repo:' + this.userInput.value + '/' + this.repoInput.value + '+' + this.commitInput.value, {
           headers: Object.assign(headers, {
             'Accept': 'application/vnd.github.cloak-preview'
           })
@@ -38050,6 +38050,8 @@ var App = function (_React$Component) {
           console.error(e);
           _this4.setState({ commits: [] });
         });
+      } else {
+        this.fetchCommits(this.repoInput.value);
       }
     }
   }, {
