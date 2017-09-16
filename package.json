@@ -1,5 +1,5 @@
 {
-  "name": "netflix-github-app",
+  "name": "commit-browser",
   "version": "1.0.0",
   "description": "Easily navigate through commits of public GitHub repositories",
   "main": "index.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kevincolten/netflix-github-app.git"
+    "url": "git+https://github.com/kevincolten/commit-browser.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kevincolten/netflix-github-app/issues"
+    "url": "https://github.com/kevincolten/commit-browser/issues"
   },
-  "homepage": "https://github.com/kevincolten/netflix-github-app#readme",
+  "homepage": "https://github.com/kevincolten/commit-browser#readme",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",

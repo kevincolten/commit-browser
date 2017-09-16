@@ -39044,7 +39044,7 @@ exports = module.exports = __webpack_require__(307)(undefined);
 
 
 // module
-exports.push([module.i, "main {\n  max-width: 1050px;\n  margin: 0 auto;\n}\n\ntable tr:nth-of-type(even) {\n  background-color: #F8F8F8;\n}\n\ntable tbody tr:hover {\n  background-color: #c1c1c1;\n}\n\ntable {\n  margin: 0 10px 40px;\n  min-width: 200px;\n}\n\ntable td, table th {\n  max-width: 350px;\n  text-align: left;\n  padding: 0 2px;\n}\n\n#tables {\n  display: flex;\n  justify-content: space-around;\n  flex-wrap: wrap;\n}\n\ntable td img {\n  max-height: 35px;\n}\n\n.text-center {\n  text-align: center;\n}\n\ninput {\n  width: 100%;\n  border: 1px solid #c1c1c1;\n  height: 20px;\n  text-align: center;\n  border-radius: 5px;\n  font-size: 12px;\n  margin-bottom: 20px;\n}\n\n.nowrap {\n  white-space: nowrap;\n  overflow-x: hidden;\n}\n", ""]);
+exports.push([module.i, "main {\n  max-width: 1050px;\n  margin: 0 auto;\n}\n\ntable tr:nth-of-type(even) {\n  background-color: #F8F8F8;\n}\n\ntable tbody tr:hover {\n  background-color: #c1c1c1;\n}\n\ntable {\n  margin: 0 10px 40px;\n  min-width: 200px;\n}\n\ntable td, table th {\n  max-width: 350px;\n  text-align: left;\n  padding: 2px;\n}\n\n#tables {\n  display: flex;\n  justify-content: space-around;\n  flex-wrap: wrap;\n}\n\ntable td img {\n  max-height: 35px;\n}\n\n.text-center {\n  text-align: center;\n}\n\ninput {\n  width: 100%;\n  border: 1px solid #c1c1c1;\n  height: 20px;\n  text-align: center;\n  border-radius: 5px;\n  font-size: 12px;\n  margin-bottom: 20px;\n}\n\n.nowrap {\n  white-space: nowrap;\n  overflow-x: hidden;\n}\n", ""]);
 
 // exports
 

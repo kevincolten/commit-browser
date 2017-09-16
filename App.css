@@ -19,7 +19,7 @@ table {
 table td, table th {
   max-width: 350px;
   text-align: left;
-  padding: 0 2px;
+  padding: 2px;
 }
 
 #tables {

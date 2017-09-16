@@ -1,6 +1,6 @@
 # Commit Browser
 
-## View Live at https://kevincolten.com/netflix-github-app
+## View Live at https://kevincolten.com/commit-browser
 
 ## Features
 ### Built from scratch with React using minimum libraries (not just using `create-react-app`)
