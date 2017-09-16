@@ -1,0 +1,33 @@
+{
+  "name": "netflix-github-app",
+  "version": "1.0.0",
+  "description": "Easily navigate through commits of public GitHub repositories",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "http-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevincolten/netflix-github-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevincolten/netflix-github-app/issues"
+  },
+  "homepage": "https://github.com/kevincolten/netflix-github-app#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "webpack": "^3.6.0"
+  },
+  "dependencies": {
+    "http-server": "^0.10.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  }
+}
